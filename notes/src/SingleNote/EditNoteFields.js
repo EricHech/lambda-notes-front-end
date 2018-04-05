@@ -14,7 +14,7 @@ export const EditNoteFields = props => {
               <input
                 type="text"
                 className="title-input"
-                placeholder="Note Title"
+                placeholder={props.note.title}
                 onChange={props.updateState}
                 name="title"
                 value={props.displayState('title')}
@@ -24,7 +24,7 @@ export const EditNoteFields = props => {
               <textarea
                 type="text"
                 className="content-input"
-                placeholder="Note Content"
+                placeholder={props.note.content}
                 onChange={props.updateState}
                 name="content"
                 value={props.displayState('content')}

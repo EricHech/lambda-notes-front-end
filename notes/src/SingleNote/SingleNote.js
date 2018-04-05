@@ -74,6 +74,7 @@ class SingleNote extends Component {
       <div>
         {this.state.editButtonPressed ? (
           <EditNoteFields
+            note={this.state.note}
             updateState={this.updateState}
             editNote={this.editNote}
             displayState={this.displayState}
