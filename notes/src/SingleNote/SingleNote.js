@@ -50,15 +50,15 @@ class SingleNote extends Component {
       title: this.state.title,
       content: this.state.content,
     };
-    this.props.editNote(editedNote, this.state.note._id);
+    this.props.editNote(editedNote, this.state.note._id, this.props.history);
 
     this.setState({
       title: '',
       content: '',
-      // editButtonPressed: !this.state.editButtonPressed,
+      editButtonPressed: !this.state.editButtonPressed,
     });
 
-    // this.props.history.push(`/notes/${this.state.note.id}`);
+    // this.props.history.push(`/notes/${this.state.note.date}`);
   };
 
   deleteNote = () => {

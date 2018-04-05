@@ -125,13 +125,14 @@ export const addNote = newNote => {
   };
 };
 
-export const editNote = (editedNote, id) => {
+export const editNote = (editedNote, id, history) => {
   const notePackage = { editedNote, id };
   const notes = axios.put(`${APIroot}/api/notes`, notePackage);
   return dispatch => {
     notes
       .then(res => {
         dispatch({ type: EDIT_NOTE, payload: res.data });
+        //history.push('/');
       })
       .catch(error => {
         console.log('In actions: There was an error editing the note: ', error);
