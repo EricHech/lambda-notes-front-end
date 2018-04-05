@@ -26,7 +26,11 @@ class SingleNote extends Component {
   fetchNotes = props => {
     const date = props.match.params.id;
     const thisNote = props.notes.filter(each => each.date === date)[0];
-    this.setState({ note: thisNote });
+    this.setState({
+      note: thisNote,
+      title: thisNote.title,
+      content: thisNote.content,
+    });
   };
 
   displayState = key => {
@@ -74,7 +78,6 @@ class SingleNote extends Component {
       <div>
         {this.state.editButtonPressed ? (
           <EditNoteFields
-            note={this.state.note}
             updateState={this.updateState}
             editNote={this.editNote}
             displayState={this.displayState}
