@@ -12,7 +12,7 @@ export const ADD_NOTE = 'ADD_NOTE';
 export const EDIT_NOTE = 'EDIT_NOTE';
 export const DELETE_NOTE = 'DELETE_NOTE';
 
-const APIroot = 'http://localhost:5000';
+const APIroot = 'https://fathomless-mountain-42963.herokuapp.com';
 
 export const authError = error => {
   if (error)
@@ -45,6 +45,7 @@ export const userCreate = (username, password, confirmPassword, history) => {
         history.push('/login');
       })
       .catch(err => {
+        if (err) console.log(err.response);
         if (err.response.data.err.errors)
           dispatch(authError('Your username must be a valid email address.'));
         else if (err.response.data.err.errmsg)
