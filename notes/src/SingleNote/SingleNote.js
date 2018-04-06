@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { deleteNote, editNote, addNote } from '../Redux/actions';
 import LeftBar from '../LeftBar/LeftBar';
-import { Modal } from './Modal';
+import { DeleteModal } from './DeleteModal';
+import { DuplicateModal } from './DuplicateModal';
 import { EditNoteFields } from './EditNoteFields';
 import './SingleNote.css';
 
@@ -11,8 +12,9 @@ class SingleNote extends Component {
     note: {},
     title: '',
     content: '',
-    deleteButtonPressed: false,
     editButtonPressed: false,
+    deleteButtonPressed: false,
+    duplicateButtonPressed: false,
   };
 
   componentWillMount() {
@@ -73,13 +75,19 @@ class SingleNote extends Component {
     this.setState({ editButtonPressed: !this.state.editButtonPressed });
   };
 
+  toggleDuplicate = () => {
+    this.setState({
+      duplicateButtonPressed: !this.state.duplicateButtonPressed,
+    });
+  };
+
   duplicateNote = () => {
     const completedNote = {
       title: this.state.title + ' (copy)',
       content: this.state.content,
       userId: this.props.userId,
     };
-    
+
     this.props.addNote(completedNote);
 
     this.setState({
@@ -118,9 +126,15 @@ class SingleNote extends Component {
               <div className="single-note_text">{this.state.note.content}</div>
             </div>
             {this.state.deleteButtonPressed && (
-              <Modal
+              <DeleteModal
                 toggleDelete={this.toggleDelete}
                 deleteNote={this.deleteNote}
+              />
+            )}
+            {this.state.duplicateButtonPressed && (
+              <DuplicateModal
+              toggleDuplicate={this.toggleDuplicate}
+              duplicateNote={this.duplicateNote}
               />
             )}
           </div>
