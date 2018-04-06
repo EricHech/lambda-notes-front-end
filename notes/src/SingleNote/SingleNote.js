@@ -73,6 +73,21 @@ class SingleNote extends Component {
     this.setState({ editButtonPressed: !this.state.editButtonPressed });
   };
 
+  duplicateNote = () => {
+    const completedNote = {
+      title: this.state.title + ' (copy)',
+      content: this.state.content,
+      userId: this.props.userId,
+    };
+    
+    this.props.addNote(completedNote);
+
+    this.setState({
+      title: '',
+      content: '',
+    });
+  };
+
   render() {
     return (
       <div>
@@ -93,6 +108,9 @@ class SingleNote extends Component {
                   </div>
                   <div className="each-link" onClick={this.toggleDelete}>
                     delete
+                  </div>
+                  <div className="each-link" onClick={this.duplicateNote}>
+                    duplicate
                   </div>
                 </div>
               </div>
@@ -115,6 +133,7 @@ class SingleNote extends Component {
 const mapStateToProps = state => {
   return {
     notes: state.notes,
+    userId: state.auth.user,
   };
 };
 
