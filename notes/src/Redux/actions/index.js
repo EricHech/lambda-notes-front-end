@@ -46,7 +46,7 @@ export const userCreate = (username, password, confirmPassword, history) => {
         history.push('/login');
       })
       .catch(err => {
-        if (err) console.log(err.response);
+        if (err) console.log('error: ', err);
         if (err.response.data.err.errors)
           dispatch(authError('Your username must be a valid email address.'));
         else if (err.response.data.err.errmsg)
@@ -65,6 +65,7 @@ export const userLogin = (username, password, history) => {
         history.push('/');
       })
       .catch(err => {
+        if (err) console.log('error: ', err);
         if (err.response.data.error)
           dispatch(authError('Username/Password invalid.'));
       });
@@ -81,6 +82,7 @@ export const userLogout = history => {
         history.push('/');
       })
       .catch(err => {
+        if (err) console.log('error: ', err);
         if (err) dispatch(authError(err));
       });
   };
@@ -164,7 +166,10 @@ export const addCollab = collabInfo => {
         dispatch({ type: ADD_COLLAB });
       })
       .catch(error => {
-        console.log('In actions: There was an error adding the collaborator: ', error);
+        console.log(
+          'In actions: There was an error adding the collaborator: ',
+          error
+        );
       });
   };
 };

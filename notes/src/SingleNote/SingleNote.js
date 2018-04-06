@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { deleteNote, editNote, addNote, addCollab } from '../Redux/actions';
 import LeftBar from '../LeftBar/LeftBar';
@@ -138,9 +139,7 @@ class SingleNote extends Component {
                   </div>
                 </div>
               </div>
-              {/* ////////////////////
-// trying this out//
-//////////////////// */}
+              <div className="single-note_header">Create Collaborators</div>
               <form type="submit">
                 <div className="title-div">
                   <input
@@ -152,13 +151,14 @@ class SingleNote extends Component {
                     value={this.state.usernameField}
                   />
                 </div>
-                <Link to="/" className="each-link" onClick={this.addCollab}>
-                  <input type="submit" value="Save" className="submit-button" />
+                <Link to="/" onClick={this.addCollab}>
+                  <input
+                    type="submit"
+                    value="Add Collaborator"
+                    className="collab-button"
+                  />
                 </Link>
               </form>
-              {/* ////////////////////
-// trying this out//
-//////////////////// */}
               <div className="single-note_header">{this.state.note.title}</div>
               <div className="single-note_text">{this.state.note.content}</div>
             </div>
@@ -188,6 +188,9 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { deleteNote, editNote, addNote, addCollab })(
-  SingleNote
-);
+export default connect(mapStateToProps, {
+  deleteNote,
+  editNote,
+  addNote,
+  addCollab,
+})(SingleNote);

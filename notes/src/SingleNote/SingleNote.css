@@ -26,12 +26,40 @@
   font-weight: bold;
 }
 
+.title-div {
+  margin-bottom: 17px;
+}
+
+.title-input {
+  margin-left: 31px;
+  height: 52px;
+  width: 425px;
+  padding-left: 15px;
+  font-family: 'Raleway', Arial, Helvetica, sans-serif;
+  border-radius: 4px;
+  box-sizing: border-box;
+  border: 1px rgb(160, 160, 160) solid;
+}
+
+.collab-button {
+  width: 235px;
+  height: 53px;
+  margin: 5px 0px 05px 31px;
+  font-family: 'Roboto', 'Segoe UI', 'Open Sans', 'Arial';
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  color: white;
+  background: #2ac0c4;
+  border: 1px solid #9b9b9b;
+}
+
 .single-note_header {
   font-family: 'Roboto', 'Segoe UI', 'Open Sans', 'Arial';
   font-size: 26px;
   color: #4a494a;
   font-weight: bold;
-  margin: 32px 0px 33px 31px;
+  margin: 32px 0px 36px 31px;
 }
 
 .single-note_text {
@@ -123,8 +151,8 @@
   font-family: 'Roboto', 'Segoe UI', 'Open Sans', 'Arial';
   font-size: 18px;
   font-weight: bold;
-  letter-spacing: .5px;
+  letter-spacing: 0.5px;
   color: white;
-  background: #2AC0C4;
-  border: 1px solid #9B9B9B;
+  background: #2ac0c4;
+  border: 1px solid #9b9b9b;
 }
