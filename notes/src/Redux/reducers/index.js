@@ -11,6 +11,7 @@ import {
   GET_NOTES,
   EDIT_NOTE,
   DELETE_NOTE,
+  ADD_COLLAB,
 } from '../actions';
 
 const AuthReducer = (auth = {}, action) => {
@@ -45,6 +46,8 @@ const NoteReducer = (notes = [], action) => {
       return notes.filter(each => {
         return each._id !== action.payload._id;
       });
+    case ADD_COLLAB:
+      return notes;
     default:
       return notes;
   }

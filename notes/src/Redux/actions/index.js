@@ -11,6 +11,7 @@ export const GET_NOTES = 'GET_NOTES';
 export const ADD_NOTE = 'ADD_NOTE';
 export const EDIT_NOTE = 'EDIT_NOTE';
 export const DELETE_NOTE = 'DELETE_NOTE';
+export const ADD_COLLAB = 'ADD_COLLAB';
 
 const APIroot = 'https://fathomless-mountain-42963.herokuapp.com';
 
@@ -151,6 +152,19 @@ export const deleteNote = id => {
           'In actions: There was an error deleting the note: ',
           error
         );
+      });
+  };
+};
+
+export const addCollab = collabInfo => {
+  const notes = axios.post(`${APIroot}/api/notes/collab`, collabInfo);
+  return dispatch => {
+    notes
+      .then(res => {
+        dispatch({ type: ADD_COLLAB });
+      })
+      .catch(error => {
+        console.log('In actions: There was an error adding the collaborator: ', error);
       });
   };
 };

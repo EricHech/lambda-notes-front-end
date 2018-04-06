@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { deleteNote, editNote, addNote } from '../Redux/actions';
+import { deleteNote, editNote, addNote, addCollab } from '../Redux/actions';
 import LeftBar from '../LeftBar/LeftBar';
 import { DeleteModal } from './DeleteModal';
 import { DuplicateModal } from './DuplicateModal';
@@ -15,6 +15,7 @@ class SingleNote extends Component {
     editButtonPressed: false,
     deleteButtonPressed: false,
     duplicateButtonPressed: false,
+    usernameField: '',
   };
 
   componentWillMount() {
@@ -59,9 +60,24 @@ class SingleNote extends Component {
       content: '',
       editButtonPressed: !this.state.editButtonPressed,
     });
-
-    // this.props.history.push(`/notes/${this.state.note.date}`);
   };
+
+  //
+  // ─── TRYING THIS OUT ────────────────────────────────────────────────────────────
+  addCollab = () => {
+    const collabInfo = {
+      username: this.state.usernameField,
+      id: this.state.note._id,
+    };
+
+    this.props.addCollab(collabInfo);
+
+    this.setState({
+      usernameField: '',
+    });
+  };
+  // ─── TRYING THIS OUT ────────────────────────────────────────────────────────────
+  //
 
   deleteNote = () => {
     this.props.deleteNote(this.state.note._id);
@@ -122,6 +138,27 @@ class SingleNote extends Component {
                   </div>
                 </div>
               </div>
+              {/* ////////////////////
+// trying this out//
+//////////////////// */}
+              <form type="submit">
+                <div className="title-div">
+                  <input
+                    type="text"
+                    className="title-input"
+                    placeholder="username"
+                    onChange={this.updateState}
+                    name="usernameField"
+                    value={this.state.usernameField}
+                  />
+                </div>
+                <Link to="/" className="each-link" onClick={this.addCollab}>
+                  <input type="submit" value="Save" className="submit-button" />
+                </Link>
+              </form>
+              {/* ////////////////////
+// trying this out//
+//////////////////// */}
               <div className="single-note_header">{this.state.note.title}</div>
               <div className="single-note_text">{this.state.note.content}</div>
             </div>
@@ -133,8 +170,8 @@ class SingleNote extends Component {
             )}
             {this.state.duplicateButtonPressed && (
               <DuplicateModal
-              toggleDuplicate={this.toggleDuplicate}
-              duplicateNote={this.duplicateNote}
+                toggleDuplicate={this.toggleDuplicate}
+                duplicateNote={this.duplicateNote}
               />
             )}
           </div>
@@ -151,6 +188,6 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { deleteNote, editNote, addNote })(
+export default connect(mapStateToProps, { deleteNote, editNote, addNote, addCollab })(
   SingleNote
 );
