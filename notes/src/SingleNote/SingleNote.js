@@ -117,7 +117,7 @@ class SingleNote extends Component {
                   <div className="each-link" onClick={this.toggleDelete}>
                     delete
                   </div>
-                  <div className="each-link" onClick={this.duplicateNote}>
+                  <div className="each-link" onClick={this.toggleDuplicate}>
                     duplicate
                   </div>
                 </div>
